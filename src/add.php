@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Alta trabajador</title>
+	<title>Añadir juego:</title>
 <!--	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 -->	
@@ -32,26 +32,36 @@ if(isset($_POST['inserta']))
 {
 //Obtiene los datos (name, surname y age) a partir del formulario de alta por el método POST (Se envía a través del body del HTTP Request. No aparece en la URL)
 	//$name = mysqli_real_escape_string($mysqli, $_POST['name']);
-	$name = mysqli_real_escape_string($mysqli, $_REQUEST['name']);
-	$surname = mysqli_real_escape_string($mysqli, $_POST['surname']);
-	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
+	$nombre = mysqli_real_escape_string($mysqli, $_REQUEST['nombre']);
+	$lanzamiento = mysqli_real_escape_string($mysqli, $_POST['lanzamiento']);
+	$plataforma = mysqli_real_escape_string($mysqli, $_POST['plataforma']);
+	$ventas = mysqli_real_escape_string($mysqli, $_POST['ventas']);
+	$desarrollador = mysqli_real_escape_string($mysqli, $_POST['desarrollador']);
 /*Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
 Esta función es usada para crear una cadena SQL legal que se puede usar en una sentencia SQL. 
 Los caracteres codificados son NUL (ASCII 0), \n, \r, \, ', ", y Control-Z.*/
 
 //Comprueba si existen campos vacíos
-	if(empty($name) || empty($age) || empty($surname)) 
+	if(empty($nombre) || empty($lanzamiento) || empty($plataforma) || empty($ventas) || empty($desarrollador))
 	{
-		if(empty($name)) {
+		if(empty($nombre)) {
 			echo "<div>Campo nombre vacío.</div>";
 		}
 
-		if(empty($surname)) {
-			echo "<div>Campo apellido vacío</div>";
+		if(empty($lanzamiento)) {
+			echo "<div>Campo año de lanzamiento vacío</div>";
 		}
 
-		if(empty($age)) {
-			echo "<div>Campo edad vacío.</div>";
+		if(empty($plataforma)) {
+			echo "<div>Campo plataforma vacio.</div>";
+		}
+
+		if(empty($ventas)) {
+			echo "<div>Campo ventas vacio..</div>";
+		}
+
+		if(empty($desarrollador)) {
+			echo "<div>Campo desarrollador vacio.</div>";
 		}
 //Enlace a la página anterior
 		echo "<a href='javascript:self.history.back();'>Volver atras</a>";
@@ -59,13 +69,13 @@ Los caracteres codificados son NUL (ASCII 0), \n, \r, \, ', ", y Control-Z.*/
 	else 
 	{
 //Prepara una sentencia SQL para su ejecución. En este caso el alta de un registro de la BD.		
-		$stmt = mysqli_prepare($mysqli, "INSERT INTO users (name,surname,age) VALUES(?,?,?)");
+		$stmt = mysqli_prepare($mysqli, "INSERT INTO juegos (nombre,lanzamiento,plataforma,ventas,desarrollador) VALUES(?,?,?,?,?)");
 /*Enlaza variables como parámetros a una setencia preparada. 
 i: La variable correspondiente tiene tipo entero
 d: La variable correspondiente tiene tipo doble
 s:	La variable correspondiente tiene tipo cadena
 */		
-		mysqli_stmt_bind_param($stmt, "ssi", $name, $surname, $age);
+		mysqli_stmt_bind_param($stmt, "sssss", $nombre, $lanzamiento, $plataforma, $ventas, $desarrollador);
 //Ejecuta una consulta preparada		
 		mysqli_stmt_execute( $stmt);
 //Libera la memoria donde se almacenó el resultado		

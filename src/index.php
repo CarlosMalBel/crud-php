@@ -9,7 +9,7 @@ DB_PASSWORD: Contraseña del usuario e la BD
 include_once("config.php");
 
 //Consulta de selección. Selecciona todos los usuarios ordenados de manera descendente por el campo id
-$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY name");
+$result = mysqli_query($mysqli, "SELECT * FROM juegos ORDER BY nombre");
 
 ?>
 
@@ -32,22 +32,23 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY name");
 -->
 <div>
 	<header>
-		<!--<h1>Panel de Control</h1>-->
+		<h1>Panel de Control</h1>
 	</header>
 
 	<main>
 	<ul>
 		<li><a href="index.php">Inicio</a></li>
-		<li><a href="add.html">Alta</a></li>
+		<li><a href="add.html">Nuevo</a></li>
 	</ul>
 	<!--<h2>Listado de trabajador@s</h2>-->
 	<table border="1">
 	<thead>
 		<tr>
 			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Edad</th>
-			<th>Acciones</th>
+			<th>Lanzamiento</th>
+			<th>Plataforma</th>
+			<th>Ventas</th>
+			<th>Desarrollador</th>
 		</tr>
 	</thead>
 	<tbdody>
@@ -69,9 +70,11 @@ $res["age"] = "23";
 	while($res = mysqli_fetch_array($result)) {
 		//se puede hacer con consultas preparadas
 		echo "<tr>\n";
-		echo "<td>".$res['name']."</td>\n";
-		echo "<td>".$res['surname']."</td>\n";
-		echo "<td>".$res['age']."</td>\n";
+		echo "<td>".$res['nombre']."</td>\n";
+		echo "<td>".$res['lanzamiento']."</td>\n";
+		echo "<td>".$res['plataforma']."</td>\n";
+		echo "<td>".$res['ventas']."</td>\n";
+		echo "<td>".$res['desarrollador']."</td>\n";
 		/*echo "<td>".$res[2]."</td>\n";
 		echo "<td>".$res[1]."</td>\n";
 		echo "<td>".$res[3]."</td>\n";*/
@@ -118,4 +121,4 @@ if ($stmt = mysqli_prepare($link, $query)) {
     mysqli_stmt_close($stmt);
 }
 mysqli_close($link);
-*/?>
+*/?>						
