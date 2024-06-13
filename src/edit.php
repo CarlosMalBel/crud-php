@@ -45,7 +45,7 @@ i: La variable correspondiente tiene tipo entero
 d: La variable correspondiente tiene tipo doble
 s:	La variable correspondiente tiene tipo cadena
 */				
-		mysqli_stmt_bind_param($stmt, "sssssi", $nombre, $lanzamiento, $plataforma, $ventas, $desarrollador, $id);
+		mysqli_stmt_bind_param($stmt, "sssisi", $nombre, $lanzamiento, $plataforma, $ventas, $desarrollador, $id);
 //Ejecuta una consulta preparada			
 		mysqli_stmt_execute($stmt);
 //Libera la memoria donde se almacenó el resultado
@@ -119,22 +119,22 @@ Al hacer click en el botón Guardar, llama a esta misma página: edit.php-->
 		</div>
 
 		<div>
-			<label for="surname">Lanzamiento</label>
+			<label for="lanzamiento">Lanzamiento</label>
 			<input type="text" name="lanzamiento" id="lanzamiento" value="<?php echo $lanzamiento;?>" required>
 		</div>
 
 		<div>
-			<label for="age">Plataforma</label>
+			<label for="plataforma">Plataforma</label>
 			<input type="text" name="plataforma" id="plataforma" value="<?php echo $plataforma;?>" required>
 		</div>
 		
 		<div>
-			<label for="age">Ventas</label>
-			<input type="text" name="ventas" id="ventas" value="<?php echo $ventas;?>" required>
+			<label for="ventas">Ventas</label>
+			<input type="number" name="ventas" id="ventas" value="<?php echo $ventas;?>" required>
 		</div>
 
 		<div>
-			<label for="age">Desarrollador</label>
+			<label for="desarrollador">Desarrollador</label>
 			<input type="text" name="desarrollador" id="desarrollador" value="<?php echo $desarrollador;?>" required>
 		</div>
 
