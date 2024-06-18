@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   apache:
-    build: ./apache
+    image: carlosmalla/app_crud-mallavia:1.0
     ports: 
       - 80:80
     environment: 
